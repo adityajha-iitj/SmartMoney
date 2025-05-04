@@ -19,7 +19,7 @@ const TodoList = () => {
     setError(null); 
 
     try {
-      const response = await axios.get(`http://localhost:12000/financialgoals/${userName}`);
+      const response = await axios.get(`http://localhost:8080/financialgoals/${userName}`);
       if (response.status === 200) {
         setTodos(response.data);
       } else {
@@ -36,7 +36,7 @@ const TodoList = () => {
     const trimmedTodo = newTodo.trim();
     if (trimmedTodo !== "" && !todos.includes(trimmedTodo)) {
       try {
-        const response = await axios.post("http://localhost:12000/financialgoals/add", {
+        const response = await axios.post("http://localhost:8080/financialgoals/add", {
           userName,
           goalName: trimmedTodo,
         });
@@ -55,7 +55,7 @@ const TodoList = () => {
 
   const removeTodo = async (index) => {
     try {
-      const response = await axios.post("http://localhost:12000/financialgoals/remove", {
+      const response = await axios.post("http://localhost:8080/financialgoals/remove", {
         userName,
         goalNo: index,
       });

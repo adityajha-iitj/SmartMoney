@@ -14,7 +14,7 @@ const RegistrationForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:12000/wallet-card`, {
+        const response = await axios.get(`http://localhost:8080/wallet-card`, {
           params: { userName } 
         });
         setOldData(response.data);
@@ -63,7 +63,7 @@ const RegistrationForm = () => {
         accountId: userName,
         updatedData: updatedData,
       };
-      const formResponse = await fetch("http://localhost:12000/update_account", {
+      const formResponse = await fetch("http://localhost:8080/update_account", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const RegistrationForm = () => {
       console.log(`Fetching data for userName: ${formData.userName}`); 
       const parameter = localStorage.getItem("username");
       console.log(`Parameter value: ${parameter}`);
-      const response = await axios.get("http://localhost:12000/health-rec", {
+      const response = await axios.get("http://localhost:8080/health-rec", {
         params: { userName: parameter },
       });
       console.log("Response data:", response.data.number); 

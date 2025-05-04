@@ -30,7 +30,7 @@ const Navbar = () => {
     const fetchData = async () => {
       try {
         console.log(`Fetching data for userName: ${userName}`); // Log userName
-        const response = await axios.get('http://localhost:12000/wallet-card', {
+        const response = await axios.get('http://localhost:8080/wallet-card', {
           params: { userName } // Use axios params for query strings
         });
         console.log('Response data:', response.data); // Log API response data

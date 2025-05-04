@@ -9,7 +9,7 @@ const ScrollBox = ({ refresh }) => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const response = await axios.get(`http://localhost:12000/scrolling?userName=${userName}`);
+        const response = await axios.get(`http://localhost:8080/scrolling?userName=${userName}`);
         setLogs(Object.values(response.data));
       } catch (error) {
         console.error('Error fetching logs:', error);

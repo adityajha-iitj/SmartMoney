@@ -6,7 +6,7 @@ var y = 0
 const checkDuplicates = async (userName) => {
   try {
     const response = await axios.get(
-      `http://localhost:12000/handleDuplicates?userName=${userName}`
+      `http://localhost:8080/handleDuplicates?userName=${userName}`
     );
     return response.data.exists;
   } catch (error) {
@@ -172,7 +172,7 @@ export default function Form() {
       return;
     }
     try {
-      const registerResponse = await axios.post("http://localhost:12000/api/auth/register", {
+      const registerResponse = await axios.post("http://localhost:8080/api/auth/register", {
         userName: formData.userName,
         password: formData.password, 
       });
@@ -183,7 +183,7 @@ export default function Form() {
     }
 
     try {
-      const formResponse = await fetch("http://localhost:12000/api/form", {
+      const formResponse = await fetch("http://localhost:8080/api/form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -195,7 +195,7 @@ export default function Form() {
       console.log(formResult);
 
       const walletResponse = await fetch(
-        "http://localhost:12000/wallet/create",
+        "http://localhost:8080/wallet/create",
         {
           method: "POST",
           headers: {
@@ -221,7 +221,7 @@ export default function Form() {
       console.log(`Fetching data for userName: ${formData.userName}`); 
       const parameter = formData.userName;
       console.log(`Parameter value: ${parameter}`);
-      const response = await axios.get("http://localhost:12000/health-rec", {
+      const response = await axios.get("http://localhost:8080/health-rec", {
         params: { userName: parameter }, 
       });
       console.log("Response data:", response.data.number); 
@@ -234,7 +234,7 @@ export default function Form() {
     try {
       console.log(`This is a check statement: ${userName}`);
       console.log(`Fetching data for userName: ${userName}`); 
-      const response = await axios.get("http://localhost:12000/health-rec", {
+      const response = await axios.get("http://localhost:8080/health-rec", {
         params: { userName }, 
       });
       setHealthscore(response.data.number); 
@@ -264,7 +264,7 @@ export default function Form() {
     }
     try {
       const response = await axios.post(
-        "http://localhost:12000/api/form",
+        "http://localhost:8080/api/form",
         formData
       );
       console.log("Response:", response.data);

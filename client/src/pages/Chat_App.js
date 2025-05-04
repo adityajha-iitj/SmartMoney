@@ -28,7 +28,7 @@ export default function Chat_App() {
     setLoading(true); 
 
     axios
-      .post("http://localhost:12000/chatbot-", {
+      .post("http://localhost:8080/chatbot-", {
         context: [window.History_new],
         prompt: input,
         userName: userName,

@@ -41,7 +41,7 @@ export default function DailyAlerts( {refresh} ) {
     useEffect(() => {
         const fetchRecommendations = async () => {
             try {
-                const response = await axios.get(`http://localhost:12000/get_account`, {
+                const response = await axios.get(`http://localhost:8080/get_account`, {
                     params: {
                       userName: userName
                     }

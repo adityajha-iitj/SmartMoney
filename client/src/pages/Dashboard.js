@@ -19,7 +19,7 @@ const MarkdownRenderer = ({ content }) => {
   );
 };
 
-const apiUrl = 'http://localhost:12000/health-rec';
+const apiUrl = 'http://localhost:8080/health-rec';
 
 function Dashboard() {
   const userName = localStorage.getItem("username");
@@ -38,7 +38,7 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         console.log(`Fetching data for userNameee: ${userName}`); // Log userName
-        const response = await axios.get('http://localhost:12000/get_account', {
+        const response = await axios.get('http://localhost:8080/get_account', {
           params: { userName } 
         });
         console.log(response); 

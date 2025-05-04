@@ -24,7 +24,7 @@ const {
 const { Goal } = require("lucide-react");
 
 const app = express();
-const port = 12000;
+const port = process.env.PORT || 8080;
 x = 0;
 
 const MongoDB_KEY = process.env.MONGODB_KEY;
@@ -776,7 +776,7 @@ app.post("/update_account", async (req, res) => {
 
 app.get("/wallet", async (req, res) => {
   const name = req.query.name;
-  const userdoc = await db.collection("formsubmissions").doc(name).get();
+  const userdoc = await db.collection("formsubmissions").doc( {userName}).get();
   const assest = userdoc._fieldsProto.assest.stringValue;
 });
 
@@ -1343,4 +1343,13 @@ app.post("/chatbot-", async (req, res) => {
     console.error("Error fetching wallet:", error);
     res.status(500).json({ msg: "Server error" });
   }
+});
+
+const path = require('path');
+
+// Serve React frontend from /client/build
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });

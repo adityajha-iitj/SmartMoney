@@ -23,7 +23,7 @@ const ParentComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:12000/wallet-card', {
+      const response = await axios.get('http://localhost:8080/wallet-card', {
         params: { userName }
       });
       setWalletData({
@@ -47,7 +47,7 @@ const ParentComponent = () => {
       return;
     };
     try {
-      await axios.post('http://localhost:12000/wallet/add', { userName, amount });
+      await axios.post('http://localhost:8080/wallet/add', { userName, amount });
       setRefresh(prev => !prev);
     } catch (err) {
       console.error(err.response.data.msg);
@@ -56,7 +56,7 @@ const ParentComponent = () => {
     {
       try {
         console.log('Fetching recommendations for user:', userName); // Debugging
-        const response = await fetch(`http://localhost:12000/daily-rec?userName=${userName}`);
+        const response = await fetch(`http://localhost:8080/daily-rec?userName=${userName}`);
         console.log("completed");
         
         const data = await response.json();
@@ -76,7 +76,7 @@ const ParentComponent = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:12000/wallet/deduct', { userName, amount, tag});
+      await axios.post('http://localhost:8080/wallet/deduct', { userName, amount, tag});
       setRefresh(prev => !prev); // This will trigger fetchData() due to refresh change
     } catch (err) {
       console.error(err.response.data.msg);
@@ -85,7 +85,7 @@ const ParentComponent = () => {
       {
         try {
           console.log('Fetching recommendations for user:', userName); // Debugging
-          const response = await fetch(`http://localhost:12000/daily-rec?userName=${userName}`);
+          const response = await fetch(`http://localhost:8080/daily-rec?userName=${userName}`);
           console.log("completed");
           
           const data = await response.json();
