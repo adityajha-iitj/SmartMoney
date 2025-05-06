@@ -12,7 +12,7 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
+      const response = await axios.post('/api/auth/login', {
         userName: username,
         password: password,
       });

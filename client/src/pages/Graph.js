@@ -12,7 +12,7 @@ const SalesChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/scrolling?userName=${userName}`);
+        const response = await axios.get(`/scrolling?userName=${userName}`);
         const logs = response.data;
 
         const dailyExpenses = {}; 

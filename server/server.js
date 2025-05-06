@@ -774,10 +774,34 @@ app.post("/update_account", async (req, res) => {
   }
 });
 
+
 app.get("/wallet", async (req, res) => {
   const name = req.query.name;
-  const userdoc = await db.collection("formsubmissions").doc( {userName}).get();
-  const assest = userdoc._fieldsProto.assest.stringValue;
+  
+  // Check if name exists and is not empty
+  if (!name) {
+    return res.status(400).json({ error: "Missing required query parameter: name" });
+  }
+  
+  try {
+    // Use the validated name parameter
+    const userdoc = await db.collection("formSubmissions").doc(name).get();
+    
+    if (!userdoc.exists) {
+      return res.status(404).json({ error: "User document not found" });
+    }
+    
+    // Check if _fieldsProto and assest properties exist
+    if (userdoc._fieldsProto && userdoc._fieldsProto.assest) {
+      const asset = userdoc._fieldsProto.assest.stringValue;
+      return res.json({ asset });
+    } else {
+      return res.json({ asset: null, message: "Asset data not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching wallet data:", error);
+    return res.status(500).json({ error: "Internal server error", details: error.message });
+  }
 });
 
 app.get("/tax-rec", async (req, res) => {

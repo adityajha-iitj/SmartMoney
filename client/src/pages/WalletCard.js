@@ -16,7 +16,7 @@ const PlanCard = ({ userName }) => {
     const fetchData = async () => {
       try {
         console.log(`Fetching data for userName: ${userName}`); 
-        const response = await axios.get(`http://localhost:8080/wallet-card`, {
+        const response = await axios.get(`/wallet-card`, {
           params: { userName } 
         });
         console.log('Response data:', response.data); 
